@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SpicifyApplication</string>
+    <string name="title_home">Home</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_profile">Profile</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="ForgetPassword">Forget Password?</string>
+    <string name="name">Name</string>
+</resources>
