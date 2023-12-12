@@ -13,7 +13,6 @@ class SpiceLibActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
-
         binding.btnBack.setOnClickListener { onBackPressed() }
 
 

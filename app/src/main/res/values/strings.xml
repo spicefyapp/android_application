@@ -7,4 +7,13 @@
     <string name="password">Password</string>
     <string name="ForgetPassword">Forget Password?</string>
     <string name="name">Name</string>
+    <string name="spice_image">Spice Image</string>
+    <string name="detail_name_title">Spice Name</string>
+    <string name="detail_name_content">-</string>
+    <string name="detail_score_title">Tingkat Prediksi</string>
+    <string name="detail_score_content">-</string>
+    <string name="detail_description_title">Description</string>
+    <string name="detail_description_content">-</string>
+    <string name="remove_photo">Hapus Foto</string>
+    <string name="add_photo">Tambah Foto</string>
 </resources>

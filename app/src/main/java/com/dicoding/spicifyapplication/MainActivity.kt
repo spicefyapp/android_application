@@ -1,17 +1,26 @@
 package com.dicoding.spicifyapplication
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dicoding.spicifyapplication.databinding.ActivityMainBinding
+import com.dicoding.spicifyapplication.ui.auth.login.LoginActivity
+import com.dicoding.spicifyapplication.ui.chatbot.ChatbotActivity
+import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val viewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,5 +43,27 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            // Cek apakah halaman saat ini adalah halaman utama
+            if (destination.id == R.id.navigation_home) {
+                // Tampilkan FAB jika halaman utama
+                binding.btnFabChat.show()
+            } else {
+                // Sembunyikan FAB jika bukan halaman utama
+                binding.btnFabChat.hide()
+            }
+        }
+
+        binding.btnFabChat.setOnClickListener {
+            startActivity(Intent(this, ChatbotActivity::class.java))
+        }
+
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+        }
     }
 }
