@@ -12,10 +12,5 @@ class MainViewModel (
     private val userRepository: UserRepository,
 ) : ViewModel() {
     fun getSession(): LiveData<UserModel> = userRepository.getSession().asLiveData()
-    fun setlogin(user: UserModel) {
-        viewModelScope.launch {
-            userRepository.saveSession(user)
-        }
-    }
     fun deleteLogin() { viewModelScope.launch { userRepository.logout() } }
 }

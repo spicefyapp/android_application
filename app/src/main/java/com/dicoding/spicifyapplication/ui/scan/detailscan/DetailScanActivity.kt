@@ -1,38 +1,36 @@
 package com.dicoding.spicifyapplication.ui.scan.detailscan
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.dicoding.spicifyapplication.data.model.SpicePredict
 import com.dicoding.spicifyapplication.databinding.ActivityDetailScanBinding
 
 class DetailScanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailScanBinding
-
-    private lateinit var detailViewModel: DetailScanViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         binding = ActivityDetailScanBinding.inflate(layoutInflater)
-        super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val imageUri = Uri.parse(intent.getStringExtra(EXTRA_IMAGE_URI))
+        val responseLabel = intent.getStringExtra(EXTRA_RESPONSE_LABEL)
+        val responseDescription = intent.getStringExtra(EXTRA_RESPONSE_DESCRIPTION)
+        val responseAccuracy = intent.getStringExtra(EXTRA_RESPONSE_ACCURACY)
 
-        val predictResult = intent.getParcelableExtra<SpicePredict>(PREDICT_RESULT) as SpicePredict
-        detailViewModel = ViewModelProvider(this, DetailScanViewModelFactory.getInstance(application))[DetailScanViewModel::class.java]
+        // Menampilkan gambar dengan setImageURI
+        binding.ivDetailImage.setImageURI(imageUri)
 
-        detailViewModel.getBatikRandom(predictResult.id).observe(this) {
-            if (it != null) {
-                binding.ivDetailImage.setImageBitmap(predictResult.image)
-                binding.tvDetailNameContent.text = it.name
-                binding.tvDetailScoreContent.text = "${predictResult.confidence}%"
-                binding.tvDetailDescriptionContent.text = it.description
-//
-            }
-        }
+        binding.tvDetailNameContent.text = responseLabel
+        binding.tvDetailScoreContent.text = responseAccuracy
+        binding.tvDetailDescriptionContent.text = responseDescription
 
     }
 
     companion object {
-        const val PREDICT_RESULT = "predict_result"
+        const val EXTRA_IMAGE_URI = "image"
+        const val EXTRA_RESPONSE_LABEL = "label"
+        const val EXTRA_RESPONSE_DESCRIPTION = "description"
+        const val EXTRA_RESPONSE_ACCURACY = "accuracy"
     }
 }

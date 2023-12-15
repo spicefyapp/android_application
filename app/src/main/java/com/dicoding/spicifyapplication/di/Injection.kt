@@ -9,7 +9,7 @@ import com.dicoding.spicifyapplication.data.repository.UserRepository
 
 object Injection {
     fun provideRepository(): UploadRepository {
-        val apiService = ApiConfig.getApiService()
+        val apiService = ApiConfig.getApiService1()
         return UploadRepository.getInstance(apiService)
     }
     fun provideUserRepository(context: Context): UserRepository {

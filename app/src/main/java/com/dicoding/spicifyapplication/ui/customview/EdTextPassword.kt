@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import com.dicoding.spicifyapplication.R
 import com.google.android.material.textfield.TextInputEditText
 
 class EdTextPassword : TextInputEditText {
@@ -29,7 +30,7 @@ class EdTextPassword : TextInputEditText {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val password = s.toString()
                 error = if (password.length < 8) {
-                    "Password must be at least 8 characters"
+                    context.getString(R.string.password_must_be_at_least_8_characters)
                 } else {
                     null
                 }

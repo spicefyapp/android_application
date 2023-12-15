@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.databinding.ActivityRegisterBinding
 import com.dicoding.spicifyapplication.helper.ResultState
 import com.dicoding.spicifyapplication.ui.auth.login.LoginActivity
@@ -34,6 +35,24 @@ class RegisterActivity : AppCompatActivity() {
             val email = edRegisterEmail.text.toString()
             val password = edRegisterPassword.text.toString()
 
+            if (name.isBlank()) {
+                showToast(getString(R.string.name_must_be_filled_in))
+                edRegisterName.requestFocus()
+                return
+            }
+
+            if (email.isBlank()) {
+                showToast(getString(R.string.email_must_be_filled_in))
+                edRegisterEmail.requestFocus()
+                return
+            }
+
+            if (password.isBlank()) {
+                showToast(getString(R.string.password_must_be_filled_in))
+                edRegisterPassword.requestFocus()
+                return
+            }
+
             viewModel.register(name, email, password).observe(this@RegisterActivity) { result ->
                 if (result != null) {
                     when (result) {
@@ -45,6 +64,7 @@ class RegisterActivity : AppCompatActivity() {
                             showLoading(false)
                             btnSignUp.isEnabled = true
                             showToast(result.data.message!!)
+                            moveLoginActivity()
                         }
                         is ResultState.Error -> {
                             showLoading(false)
@@ -55,6 +75,13 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun moveLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
     }
 
     private fun showLoading(isLoading: Boolean) {

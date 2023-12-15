@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns
+import com.dicoding.spicifyapplication.R
 import com.google.android.material.textfield.TextInputEditText
 
 class EdTextEmail : TextInputEditText {
@@ -36,7 +37,7 @@ class EdTextEmail : TextInputEditText {
                 error = if (isValidEmail) {
                     null
                 } else {
-                    "Email must be a valid email"
+                    context.getString(R.string.email_must_be_a_valid_email)
                 }
             }
 

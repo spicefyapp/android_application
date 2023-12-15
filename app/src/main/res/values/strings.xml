@@ -10,10 +10,20 @@
     <string name="spice_image">Spice Image</string>
     <string name="detail_name_title">Spice Name</string>
     <string name="detail_name_content">-</string>
-    <string name="detail_score_title">Tingkat Prediksi</string>
-    <string name="detail_score_content">-</string>
+    <string name="detail_accuracy_title">Accuracy</string>
+    <string name="detail_accuracy_content">-</string>
     <string name="detail_description_title">Description</string>
     <string name="detail_description_content">-</string>
-    <string name="remove_photo">Hapus Foto</string>
-    <string name="add_photo">Tambah Foto</string>
+    <string name="empty_image_warning">Blank image. Please select it first</string>
+    <string name="login">Login</string>
+    <string name="signup">Register</string>
+    <string name="icon_description">success</string>
+    <string name="login_successfully">Login successfully</string>
+    <string name="name_must_be_filled_in">Name must be filled in</string>
+    <string name="email_must_be_filled_in">Email must be filled in</string>
+    <string name="password_must_be_filled_in">Password must be filled in</string>
+    <string name="email_must_be_a_valid_email">Email must be a valid email</string>
+    <string name="password_must_be_at_least_8_characters">Password must be at least 8 characters</string>
+    <string name="sorry_not_spices">Sorry!! not spices</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

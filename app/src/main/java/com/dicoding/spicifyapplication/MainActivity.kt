@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
         binding.btnFabChat.setOnClickListener {
             startActivity(Intent(this, ChatbotActivity::class.java))
         }
-
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, LoginActivity::class.java))

@@ -1,8 +1,10 @@
 package com.dicoding.spicifyapplication.ui.scan
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,14 +13,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.databinding.FragmentScanBinding
 import com.dicoding.spicifyapplication.helper.ResultState
 import com.dicoding.spicifyapplication.helper.getImageUri
+import com.dicoding.spicifyapplication.helper.reduceFileImage
 import com.dicoding.spicifyapplication.helper.uriToFile
+import com.dicoding.spicifyapplication.ui.scan.detailscan.DetailScanActivity
 
 class ScanFragment : Fragment() {
 
@@ -57,6 +63,7 @@ class ScanFragment : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -81,7 +88,7 @@ class ScanFragment : Fragment() {
             currentImageUri = uri
             showImage()
         } else {
-            Log.d("Photo Picker", "No media selected")
+            Log.d(TAG, "No media selected")
         }
     }
 
@@ -97,32 +104,17 @@ class ScanFragment : Fragment() {
             showImage()
         }
     }
-
-//    private fun startCameraX() {
-//        val intent = Intent(requireContext(), CameraActivity::class.java)
-//        launcherIntentCameraX.launch(intent)
-//    }
-
-//    private val launcherIntentCameraX = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) {
-//        if (it.resultCode == CAMERAX_RESULT) {
-//            currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
-//            showImage()
-//        }
-//    }
-
     private fun showImage() {
         currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
+            Log.d(TAG, "showImage: $it")
             binding.ivImagePreview.setImageURI(it)
         }
     }
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun uploadImageSpice() {
         currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, requireContext())
-            Log.d("Image File", "showImage: ${imageFile.path}")
-//            val description = "Ini adalah deksripsi gambar"
+            val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
+            Log.d(TAG, "showImage: ${imageFile.path}")
             viewModel.uploadImageSpice(imageFile).observe(requireActivity()) { result ->
                 if (result != null) {
                     when (result) {
@@ -132,17 +124,17 @@ class ScanFragment : Fragment() {
                         is ResultState.Success -> {
                             val response = result.data
                             val accuracy = response.accuracy
-
-
-                            if (accuracy >= 50.toString()) {
-                                showAlertDialog(
-                                    "Berhasil",
-                                    "${response.label}:\n ${response.description} (Akurasi: $accuracy)"
-                                )
+                            if (accuracy >= 75.toString()) {
+                                val intent = Intent(requireContext(), DetailScanActivity::class.java).apply {
+                                    putExtra(DetailScanActivity.EXTRA_IMAGE_URI, uri.toString())
+                                    putExtra(DetailScanActivity.EXTRA_RESPONSE_LABEL, response.label)
+                                    putExtra(DetailScanActivity.EXTRA_RESPONSE_DESCRIPTION, response.description)
+                                    putExtra(DetailScanActivity.EXTRA_RESPONSE_ACCURACY, accuracy)
+                                }
+                                startActivity(intent)
                             } else {
-                                showToast("Akurasi di bawah 50%. Gambar mungkin bukan termasuk rempah. (Akurasi: $accuracy)")
+                                showToast(getString(R.string.sorry_not_spices))
                             }
-
                             showLoading(false)
                         }
 
@@ -153,11 +145,11 @@ class ScanFragment : Fragment() {
                     }
                 }
             }
-        }
+        } ?: showToast(getString(R.string.empty_image_warning))
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showToast(message: String) {
@@ -183,7 +175,7 @@ class ScanFragment : Fragment() {
     companion object {
         const val CAMERA_X_RESULT = 200
         const val CROP_RESULT = 101
-        const val REQUEST_CODE_PERMISSIONS = 10
+        const val TAG = "ScanFragment"
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }
 }

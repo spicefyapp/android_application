@@ -26,9 +26,9 @@
 
     <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
         android:layout_marginStart="12dp"
         android:src="@drawable/ic_back"
         android:background="@drawable/background_oval2"
@@ -79,6 +79,7 @@
                 android:layout_width="350dp"
                 android:layout_height="580dp"
                 app:cardCornerRadius="24dp"
+                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +108,7 @@
                         android:id="@+id/iv_add_image"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/ic_image_blank"
+                        android:src="@drawable/ic_image"
                         app:layout_constraintEnd_toEndOf="@+id/textView3"
                         app:layout_constraintStart_toStartOf="@+id/textView3"
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -131,7 +132,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/nameSpiceTextView"
-                        app:startIconDrawable="@drawable/ic_email">
+                        app:startIconDrawable="@drawable/ic_spice">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_register_name"
@@ -162,7 +163,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/emailTextView"
-                        app:startIconDrawable="@drawable/ic_email">
+                        app:startIconDrawable="@drawable/ic_price">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_add_price"
@@ -170,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:ems="10"
-                            android:inputType="textEmailAddress"
+                            android:inputType="textPersonName"
                             android:textSize="12sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -193,7 +194,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/waTextView"
-                        app:startIconDrawable="@drawable/ic_lock">
+                        app:startIconDrawable="@drawable/ic_wa">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_add_wa"
@@ -201,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:ems="10"
-                            android:inputType="text"
+                            android:inputType="textPersonName"
                             android:textSize="12sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -224,7 +225,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/descTextView"
-                        app:startIconDrawable="@drawable/ic_lock">
+                        app:startIconDrawable="@drawable/ic_desc">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_add_desc"
@@ -232,7 +233,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:ems="10"
-                            android:inputType="text"
+                            android:inputType="textPersonName"
                             android:textSize="12sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>

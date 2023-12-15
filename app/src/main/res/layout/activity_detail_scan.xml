@@ -9,29 +9,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Spice Detection"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Spice Detection"-->
+<!--            android:textSize="25dp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvImage"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:cardCornerRadius="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:cardCornerRadius="18dp"> <!-- Menambahkan radius 16dp -->
+            app:layout_constraintTop_toTopOf="parent"> <!-- Menambahkan radius 16dp -->
 
             <ImageView
                 android:id="@+id/iv_detail_image"
@@ -48,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="32dp"
             android:textAlignment="center"
             android:text="@string/detail_name_title"
@@ -67,9 +65,9 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
             android:textAlignment="center"
-
             android:text="@string/detail_name_content"
-            android:textSize="14sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_name_title"
@@ -80,9 +78,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="32dp"
-            android:text="@string/detail_score_title"
+            android:text="@string/detail_accuracy_title"
+            android:textAlignment="center"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,8 +96,11 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
-            android:text="@string/detail_score_content"
-            android:textSize="14sp"
+            android:textAlignment="center"
+            android:text="@string/detail_accuracy_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange_700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_score_title"
@@ -112,7 +114,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
             android:text="@string/detail_description_title"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
