@@ -37,6 +37,9 @@ class ChatbotActivity : AppCompatActivity() {
                 binding.edChat.text.clear()
             }
         }
+
+        binding.btnBack.setOnClickListener { onBackPressed() }
+
     }
 
     private fun chatWithBot(chat : String) {

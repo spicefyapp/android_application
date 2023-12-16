@@ -167,10 +167,10 @@ class ScanFragment : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
 
     companion object {
         const val CAMERA_X_RESULT = 200

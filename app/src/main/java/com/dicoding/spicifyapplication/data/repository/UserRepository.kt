@@ -37,6 +37,18 @@ class UserRepository private constructor(
         }
     }
 
+    fun getSpices() = liveData {
+        emit(ResultState.Loading)
+        try {
+            val responseBody = apiService.getSpices()
+            emit(ResultState.Success(responseBody.rempah))
+        } catch (e: HttpException) {
+            emit(ResultState.Error( "Terjadi kesalahan"))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Terjadi kesalahan jaringan, Coba lagi"))
+        }
+    }
+
     suspend fun saveSession(user: UserModel){
         userPreference.saveSession(user)
     }

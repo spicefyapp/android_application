@@ -14,6 +14,7 @@ class DetailSpiceLibActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailSpiceLibBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         val spices = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(EXTRA_SPICE,RempahItem::class.java)
@@ -36,8 +37,8 @@ class DetailSpiceLibActivity : AppCompatActivity() {
                 .with(this@DetailSpiceLibActivity)
                 .load(spice.image)
                 .into(ivDetailLibImage)
-            tvDetailName.text = spice.name
-            tvDetailDesc.text = spice.description
+            tvDetailNameContent.text = spice.name
+            tvDetailDescContent.text = spice.description
         }
 
     }

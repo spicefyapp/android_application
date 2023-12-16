@@ -6,10 +6,12 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.spicifyapplication.MainViewModel
+import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.databinding.FragmentProfileBinding
 import com.dicoding.spicifyapplication.ui.profile.about.AboutActivity
 import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
@@ -60,7 +62,22 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            viewModel.deleteLogin()
+            val alertDialogBuilder = AlertDialog.Builder(requireContext())
+            alertDialogBuilder.apply {
+                setTitle(getString(R.string.confirm_logout))
+                setMessage(getString(R.string.are_you_sure_you_want_to_logout))
+                setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    viewModel.deleteLogin()
+                }
+                setNegativeButton(getString(R.string.no)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+            }
+
+            // Menampilkan AlertDialog
+            val alertDialog = alertDialogBuilder.create()
+            alertDialog.show()
         }
     }
+
 }
