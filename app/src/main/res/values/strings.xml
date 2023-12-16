@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SpicifyApplication</string>
+    <string name="app_name" translatable="false">SpicifyApplication</string>
     <string name="title_home">Home</string>
     <string name="title_scan">Scan</string>
     <string name="title_profile">Profile</string>
@@ -26,4 +26,8 @@
     <string name="password_must_be_at_least_8_characters">Password must be at least 8 characters</string>
     <string name="sorry_not_spices">Sorry!! not spices</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
+    <string name="language">Language</string>
+    <string name="descaboutapp">This spice detection app provides complete information about various types of spices in Indonesia. Using precision calculations based on spice image datasets, the app not only helps Generation Z accurately recognize spices, but also provides detailed information such as names, photos, and properties of spices. In addition, the app educates about the health benefits of spices and how to use them in healthy cooking. Through integration with online platforms, users can not only identify, but also buy or sell spices according to their needs, efficiently supporting the spice market ecosystem.</string>
 </resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SpicifyApplication</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_profile">Profil</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="ForgetPassword">Lupa password?</string>
+    <string name="name">Nama</string>
+    <string name="spice_image">Gambar Rempah</string>
+    <string name="detail_name_title">Nama Rempah</string>
+    <string name="detail_name_content">-</string>
+    <string name="detail_accuracy_title">Akurasi</string>
+    <string name="detail_accuracy_content">-</string>
+    <string name="detail_description_title">Deskripsi</string>
+    <string name="detail_description_content">-</string>
+    <string name="empty_image_warning">Gambar kosong, Silahkan masukkan dulu</string>
+    <string name="login">Masuk</string>
+    <string name="signup">Daftar</string>
+    <string name="icon_description">Berhasil</string>
+    <string name="login_successfully">Berhasil Masuk</string>
+    <string name="name_must_be_filled_in">Nama harus di isi</string>
+    <string name="email_must_be_filled_in">Email harus di isi</string>
+    <string name="password_must_be_filled_in">password harus di isi</string>
+    <string name="email_must_be_a_valid_email">Email harus sesuai penulisan</string>
+    <string name="password_must_be_at_least_8_characters">Password harus lebih dari 8 karakter</string>
+    <string name="sorry_not_spices">Maaf!! Bukan rempah</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="logout">Keluar</string>
+    <string name="about">Tentang</string>
+    <string name="language">Bahasa</string>
+    <string name="descaboutapp">This spice detection app provides complete information about various types of spices in Indonesia. Using precision calculations based on spice image datasets, the app not only helps Generation Z accurately recognize spices, but also provides detailed information such as names, photos, and properties of spices. In addition, the app educates about the health benefits of spices and how to use them in healthy cooking. Through integration with online platforms, users can not only identify, but also buy or sell spices according to their needs, efficiently supporting the spice market ecosystem.</string>
+</resources>
