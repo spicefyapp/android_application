@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "423451016468",
+    "firebase_url": "https://spicifyapplication-default-rtdb.firebaseio.com",
+    "project_id": "spicifyapplication",
+    "storage_bucket": "spicifyapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423451016468:android:248ba99c89855d79265601",
+        "android_client_info": {
+          "package_name": "com.dicoding.spicifyapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw7Bm4tZAoy56t4zxAGHJQd6Y8Saz55W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
