@@ -2,6 +2,7 @@ package com.dicoding.spicifyapplication.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +13,18 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.spicifyapplication.MainViewModel
 import com.dicoding.spicifyapplication.data.network.response.RempahItem
+import com.dicoding.spicifyapplication.data.network.response.SpiceResponse
+import com.dicoding.spicifyapplication.data.network.retrofit.ApiConfig
 import com.dicoding.spicifyapplication.databinding.FragmentHomeBinding
 import com.dicoding.spicifyapplication.helper.ResultState
 import com.dicoding.spicifyapplication.ui.adapter.AdapterSpices
 import com.dicoding.spicifyapplication.ui.dashboard.spicelib.SpiceLibActivity
+import com.dicoding.spicifyapplication.ui.dashboard.spiceloc.MapsActivity
 import com.dicoding.spicifyapplication.ui.dashboard.spicemart.SpiceMartActivity
 import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
@@ -62,6 +69,10 @@ class HomeFragment : Fragment() {
             startActivity(Intent(requireActivity(),SpiceLibActivity::class.java))
         }
 
+        binding.btnImgSpiceLoc.setOnClickListener {
+            startActivity(Intent(requireActivity(),MapsActivity::class.java))
+        }
+
         binding.btnImgSpiceMart.setOnClickListener {
             startActivity(Intent(requireActivity(),SpiceMartActivity::class.java))
         }
@@ -77,7 +88,8 @@ class HomeFragment : Fragment() {
     private fun setupData() {
         viewModel.getSession().observe(requireActivity()) { user ->
             if (user.token.isNotBlank()) {
-                processGetAllSpices()
+//                processGetAllSpices()
+                getSpices()
             }
         }
     }
@@ -107,9 +119,42 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun getSpices() {
+        showLoading(true)
+        val client = ApiConfig.getApiService2().getAllSpices()
+        client.enqueue(object : Callback<SpiceResponse> {
+            override fun onResponse(
+                call: Call<SpiceResponse>,
+                response: Response<SpiceResponse>
+            ) {
+                showLoading(false)
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        setListStory(responseBody.rempah!!)
+                    }
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<SpiceResponse>, t: Throwable) {
+                showLoading(false)
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
     private fun setListStory(listSpice: List<RempahItem?>) {
         val adapter = AdapterSpices()
         adapter.submitList(listSpice)
         binding.rvSpiceLib.adapter = adapter
+    }
+
+    companion object {
+        const val TAG = "HomeFragment"
     }
 }

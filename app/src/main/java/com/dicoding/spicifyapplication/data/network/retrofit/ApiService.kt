@@ -6,6 +6,7 @@ import com.dicoding.spicifyapplication.data.network.response.RegisterResponse
 import com.dicoding.spicifyapplication.data.network.response.SpiceResponse
 import com.dicoding.spicifyapplication.data.network.response.UploadResponse
 import okhttp3.MultipartBody
+import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -51,6 +52,10 @@ interface ApiService {
     @GET("show")
     suspend fun getSpices(
     ): SpiceResponse
+
+    @GET("show")
+    fun getAllSpices(
+    ): Call<SpiceResponse>
 
 
 }

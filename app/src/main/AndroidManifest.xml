@@ -43,7 +43,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="AIzaSyCmnD9WpsGBXTxi7NxxUY2RU-AQ4GVyjE4" />
 
         <activity
             android:name=".ui.dashboard.spiceloc.MapsActivity"
