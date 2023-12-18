@@ -13,6 +13,8 @@ class DetailScanActivity : AppCompatActivity() {
         binding = ActivityDetailScanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val imageUri = Uri.parse(intent.getStringExtra(EXTRA_IMAGE_URI))
         val responseLabel = intent.getStringExtra(EXTRA_RESPONSE_LABEL)
         val responseDescription = intent.getStringExtra(EXTRA_RESPONSE_DESCRIPTION)

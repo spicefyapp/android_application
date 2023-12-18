@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.spicemart.AddProductActivity">
 
+
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -46,28 +48,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvSpiceLib"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SpiceLib"
-        android:layout_marginTop="15dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <LinearLayout
         android:id="@+id/cardView2"
-        android:background="@drawable/bg_topradius"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:cardBackgroundColor="@color/white"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/bg_topradius"
         android:orientation="vertical"
+        app:cardBackgroundColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSpiceLib">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -78,8 +71,8 @@
                 android:id="@+id/cardView3"
                 android:layout_width="350dp"
                 android:layout_height="580dp"
-                app:cardCornerRadius="24dp"
                 android:background="@color/white"
+                app:cardCornerRadius="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -257,15 +250,15 @@
                             android:id="@+id/switchLoc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <Button
                         android:id="@+id/btnSave"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_btn"
                         android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_btn"
                         android:text="SAVE"
                         app:layout_constraintEnd_toEndOf="@+id/lineLoc"
                         app:layout_constraintStart_toStartOf="@+id/lineLoc"
@@ -278,5 +271,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

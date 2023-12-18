@@ -6,6 +6,7 @@ import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -137,6 +138,8 @@ class AddProductActivity : AppCompatActivity() {
             return
         }
 
+        showLoading(true)
+
         // Generate nama unik untuk gambar
         val imageName = "${System.currentTimeMillis()}.jpg"
 
@@ -171,11 +174,14 @@ class AddProductActivity : AppCompatActivity() {
                         }
 
                         Toast.makeText(this, "Produk berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+                        showLoading(false)
                         finish()
                     }
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Gagal mengunggah gambar: ${e.message}", Toast.LENGTH_SHORT).show()
+                    showLoading(false)
+
                 }
         }
     }
@@ -244,6 +250,10 @@ class AddProductActivity : AppCompatActivity() {
                 }
             }
         }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
 
     companion object {
         private const val REQUEST_CAMERA_PERMISSION = 123
