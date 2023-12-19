@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
         viewModel.getSession().observe(requireActivity()) { user ->
             if (user.token.isNotBlank()) {
 //                processGetAllSpices()
-                getSpices()
+                processGetAllSpices()
             }
         }
     }
@@ -99,49 +99,21 @@ class HomeFragment : Fragment() {
             if (result != null) {
                 when (result) {
                     is ResultState.Loading -> {
-//                        binding.progressBar.visibility = View.VISIBLE
+                        showLoading(true)
                     }
                     is ResultState.Success -> {
-//                        binding.progressBar.visibility = View.GONE
                         setListStory(result.data!!)
+                        showLoading(false)
+
                     }
                     is ResultState.Error -> {
-//                        Toast.makeText(
-//                            this,
-//                            R.string.failed_to_load_data,
-//                            Toast.LENGTH_SHORT
-//                        ).show()
+                        showLoading(false)
                     }
 
                     else -> {}
                 }
             }
         }
-    }
-
-    private fun getSpices() {
-        showLoading(true)
-        val client = ApiConfig.getApiService2().getAllSpices()
-        client.enqueue(object : Callback<SpiceResponse> {
-            override fun onResponse(
-                call: Call<SpiceResponse>,
-                response: Response<SpiceResponse>
-            ) {
-                showLoading(false)
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        setListStory(responseBody.rempah!!)
-                    }
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
-            }
-            override fun onFailure(call: Call<SpiceResponse>, t: Throwable) {
-                showLoading(false)
-                Log.e(TAG, "onFailure: ${t.message}")
-            }
-        })
     }
 
     private fun showLoading(isLoading: Boolean) {

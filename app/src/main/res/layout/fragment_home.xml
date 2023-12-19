@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,281 +7,308 @@
     android:background="@color/white"
     tools:context=".ui.home.HomeFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:background="@drawable/bg_gradient"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@drawable/bg_gradient"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/overlayImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_topbar" />
+
+        </LinearLayout>
 
         <ImageView
-            android:id="@+id/overlayImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg_topbar" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_marginTop="24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvHai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hai,"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-    <TextView
-        android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Yourname"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tvHai"
-        app:layout_constraintStart_toStartOf="@+id/tvHai"
-        app:layout_constraintTop_toBottomOf="@+id/tvHai" />
-
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:id="@+id/materialCardView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:cardCornerRadius="8dp"-->
-<!--        app:cardElevation="12dp"-->
-<!--        app:cardUseCompatPadding="true"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/imageView">-->
-
-<!--        <androidx.appcompat.widget.SearchView-->
-<!--            android:id="@+id/searchView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:iconifiedByDefault="false"-->
-<!--            app:queryBackground="@android:color/transparent"-->
-<!--            app:queryHint="Search here ..." />-->
-
-<!--    </com.google.android.material.card.MaterialCardView>-->
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="340dp"
-        android:layout_height="180dp"
-        app:cardCornerRadius="24dp"
-        android:backgroundTint="@color/white"
-        app:cardElevation="20dp"
-        android:layout_marginTop="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:id="@+id/imageView"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white">
+            android:src="@drawable/ic_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvDashboard"
-                android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tvHai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hai,"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yourname"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvHai"
+            app:layout_constraintStart_toStartOf="@+id/tvHai"
+            app:layout_constraintTop_toBottomOf="@+id/tvHai" />
+
+        <!--    <com.google.android.material.card.MaterialCardView-->
+        <!--        android:id="@+id/materialCardView"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:cardCornerRadius="8dp"-->
+        <!--        app:cardElevation="12dp"-->
+        <!--        app:cardUseCompatPadding="true"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:layout_constraintHorizontal_bias="0.5"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/imageView">-->
+
+        <!--        <androidx.appcompat.widget.SearchView-->
+        <!--            android:id="@+id/searchView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:iconifiedByDefault="false"-->
+        <!--            app:queryBackground="@android:color/transparent"-->
+        <!--            app:queryHint="Search here ..." />-->
+
+        <!--    </com.google.android.material.card.MaterialCardView>-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="340dp"
+            android:layout_height="180dp"
+            app:cardCornerRadius="24dp"
+            android:backgroundTint="@color/white"
+            app:cardElevation="20dp"
+            android:layout_marginTop="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:textColor="@color/black"
-                android:text="Dashboard"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_weight="1"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tvDashboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/black"
+                    android:text="Dashboard"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDashboard">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FF951C"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="16dp"
+                                android:background="@drawable/background_oval2"
+                                android:backgroundTint="@color/white">
+
+                                <androidx.appcompat.widget.AppCompatImageButton
+                                    android:id="@+id/btnImgSpiceLib"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:background="?attr/selectableItemBackgroundBorderless"
+                                    android:src="@drawable/ic_lib"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <TextView
+                                android:id="@+id/tvSpiceLib"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="SpiceLib"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FF951C"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="16dp"
+                                android:background="@drawable/background_oval2"
+                                android:backgroundTint="@color/white">
+
+                                <androidx.appcompat.widget.AppCompatImageButton
+                                    android:id="@+id/btnImgSpiceLoc"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:background="?attr/selectableItemBackgroundBorderless"
+                                    android:src="@drawable/ic_maps"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <TextView
+                                android:id="@+id/tvSpiceLoc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="SpiceLoc"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FF951C"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="16dp"
+                                android:background="@drawable/background_oval2"
+                                android:backgroundTint="@color/white">
+
+                                <androidx.appcompat.widget.AppCompatImageButton
+                                    android:id="@+id/btnImgSpiceMart"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:background="?attr/selectableItemBackgroundBorderless"
+                                    android:src="@drawable/ic_mart"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <TextView
+                                android:id="@+id/tvSpiceMart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="SpiceMart"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDashboard">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="90dp"
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardBackgroundColor="#FF951C"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="3dp">
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:text="Spice populer"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="16dp"
-                            android:background="@drawable/background_oval2"
-                            android:backgroundTint="@color/white">
-
-                            <androidx.appcompat.widget.AppCompatImageButton
-                                android:id="@+id/btnImgSpiceLib"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:src="@drawable/ic_lib"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <TextView
-                            android:id="@+id/tvSpiceLib"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="SpiceLib"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="90dp"
+                <TextView
+                    android:id="@+id/btnTvShowMore"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardBackgroundColor="#FF951C"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="3dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="16dp"
-                            android:background="@drawable/background_oval2"
-                            android:backgroundTint="@color/white">
-
-                            <androidx.appcompat.widget.AppCompatImageButton
-                                android:id="@+id/btnImgSpiceLoc"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:src="@drawable/ic_maps"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <TextView
-                            android:id="@+id/tvSpiceLoc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="SpiceLoc"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    app:cardBackgroundColor="#FF951C"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="3dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="16dp"
-                            android:background="@drawable/background_oval2"
-                            android:backgroundTint="@color/white">
-
-                            <androidx.appcompat.widget.AppCompatImageButton
-                                android:id="@+id/btnImgSpiceMart"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:src="@drawable/ic_mart"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <TextView
-                            android:id="@+id/tvSpiceMart"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="SpiceMart"
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                    android:layout_marginEnd="24dp"
+                    android:text="View All"
+                    android:textColor="@color/orange_700" />
             </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSpiceLib"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSpiceLib"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+            tools:visibility="visible" />
 
-
-
-
-    </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        tools:visibility="visible" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

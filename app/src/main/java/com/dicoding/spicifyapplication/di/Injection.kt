@@ -15,7 +15,7 @@ object Injection {
     }
 
     fun provideSpiceRepository(): SpiceRepository {
-        val apiService = ApiConfig.getApiService2()
+        val apiService = ApiConfig.getApiService()
         return SpiceRepository.getInstance(apiService)
     }
 

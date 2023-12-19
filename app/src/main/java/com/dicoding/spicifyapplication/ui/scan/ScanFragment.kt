@@ -124,7 +124,8 @@ class ScanFragment : Fragment() {
                         is ResultState.Success -> {
                             val response = result.data
                             val accuracy = response.accuracy
-                            if (accuracy >= 75.toString()) {
+                            val cleanedAccuracy = accuracy.replace("%", "")
+                            if (cleanedAccuracy.toFloat() >= 75) {
                                 val intent = Intent(requireContext(), DetailScanActivity::class.java).apply {
                                     putExtra(DetailScanActivity.EXTRA_IMAGE_URI, uri.toString())
                                     putExtra(DetailScanActivity.EXTRA_RESPONSE_LABEL, response.label)
