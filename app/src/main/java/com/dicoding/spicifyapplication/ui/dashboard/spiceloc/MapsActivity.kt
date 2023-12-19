@@ -1,11 +1,13 @@
 package com.dicoding.spicifyapplication.ui.dashboard.spiceloc
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.data.model.ProductSpiceModel
 import com.dicoding.spicifyapplication.databinding.ActivityMapsBinding
+import com.dicoding.spicifyapplication.ui.dashboard.spicemart.DetailSpiceMartActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -75,27 +78,36 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val bottomSheetDialog = BottomSheetDialog(this)
         val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_detailmaps, null)
 
-        // Inisialisasi view di dalam bottom sheet
         val productImageView = bottomSheetView.findViewById<ImageView>(R.id.productImageView)
         val productNameTextView = bottomSheetView.findViewById<TextView>(R.id.productNameTextView)
         val productDescriptionTextView = bottomSheetView.findViewById<TextView>(R.id.productDescriptionTextView)
         val productAddressTextView = bottomSheetView.findViewById<TextView>(R.id.productAddressTextView)
-
-        // Mendapatkan alamat dari koordinat (lat, lon)
         val address = getAddressFromLocation(productSpiceModel.dataLat, productSpiceModel.dataLon)
+        val detailButton = bottomSheetView.findViewById<Button>(R.id.btnDetailMaps) // Tambahkan ini
 
-        // Set data ke dalam view
+
         Glide.with(this).load(productSpiceModel.dataImage).into(productImageView)
         productNameTextView.text = productSpiceModel.dataNama
         productDescriptionTextView.text = productSpiceModel.dataHarga
         productAddressTextView.text = address
 
+        // Menambahkan onClickListener untuk tombol detail
+        detailButton.setOnClickListener {
+            // Handling untuk berpindah ke halaman detail product
+            val intent = Intent(this, DetailSpiceMartActivity::class.java)
+            intent.putExtra("Image", productSpiceModel.dataImage)
+            intent.putExtra("Description", productSpiceModel.dataDes)
+            intent.putExtra("Title", productSpiceModel.dataNama)
+            intent.putExtra("Price", productSpiceModel.dataHarga)
+            intent.putExtra("Wa", productSpiceModel.dataWa)
+            intent.putExtra("Lat", productSpiceModel.dataLat)
+            intent.putExtra("Lon", productSpiceModel.dataLon)
+            startActivity(intent)
+            bottomSheetDialog.dismiss() // Menutup bottom sheet setelah berpindah halaman
+        }
 
-
-        // Menampilkan bottom sheet
         bottomSheetDialog.setContentView(bottomSheetView)
         bottomSheetDialog.show()
-
     }
 
     private fun getAddressFromLocation(lat: Double?, lon: Double?): String {
@@ -162,24 +174,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     val spiceProduk = dataSnapshot.getValue(ProductSpiceModel::class.java)
                     spiceProduk?.let {
                         val latLng = LatLng(it.dataLat ?: 0.0, it.dataLon ?: 0.0)
-                        val marker =
-                            mMap.addMarker(MarkerOptions().position(latLng).title(it.dataNama))
-
-                        // Menyimpan data pada marker menggunakan tag
+                        val marker = mMap.addMarker(MarkerOptions().position(latLng).title(it.dataNama))
                         marker?.tag = it
                         boundsBuilder.include(latLng)
                     }
                 }
-
-                // Menambahkan listener untuk menangani klik marker
                 mMap.setOnMarkerClickListener { marker ->
-                    // Mendapatkan data dari marker yang diklik
                     val productSpiceModel: ProductSpiceModel? = marker.tag as? ProductSpiceModel
 
-                    // Menampilkan BottomSheet jika data tersedia
                     productSpiceModel?.let { showBottomSheet(it) }
 
-                    true // true menandakan bahwa event sudah di-handle
+                    true
                 }
 
                 val bounds: LatLngBounds = boundsBuilder.build()

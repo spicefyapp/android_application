@@ -38,13 +38,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvScanImage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="About App"
-        android:textSize="18dp"
-        android:textColor="@color/white"
+        android:layout_marginTop="24dp"
         android:textStyle="bold"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

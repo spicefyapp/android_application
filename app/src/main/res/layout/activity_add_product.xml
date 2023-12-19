@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.spicemart.AddProductActivity">
 
-
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -38,12 +36,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_marginTop="12dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_logo"
+    <TextView
+        android:id="@+id/tvScanImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Product"
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,29 +84,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp"
-                        android:text="Add Product"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/iv_add_image"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/ic_image"
-                        app:layout_constraintEnd_toEndOf="@+id/textView3"
-                        app:layout_constraintStart_toStartOf="@+id/textView3"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/nameSpiceTextView"

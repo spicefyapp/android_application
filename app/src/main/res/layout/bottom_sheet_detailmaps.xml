@@ -45,4 +45,15 @@
         android:text="Product Address"
         android:textSize="16sp" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDetailMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/bg_btn_stroke"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="Show Detail" />
+
 </RelativeLayout>

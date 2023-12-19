@@ -27,6 +27,8 @@ class SpiceMartActivity : AppCompatActivity() {
         binding = ActivitySpiceMartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val gridLayoutManager = GridLayoutManager(this@SpiceMartActivity, 2)
         binding.rvSpiceMart.layoutManager = gridLayoutManager
 

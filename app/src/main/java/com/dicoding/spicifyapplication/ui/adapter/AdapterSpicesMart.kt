@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.spicifyapplication.data.model.ProductSpiceModel
 import com.dicoding.spicifyapplication.databinding.ItemSpicemartRowBinding
+import com.dicoding.spicifyapplication.ui.dashboard.spicemart.DetailSpiceMartActivity
 import java.io.IOException
 import java.util.Locale
 
@@ -56,18 +57,17 @@ class AdapterSpicesMart (private var dataProduct: List<ProductSpiceModel>) : Rec
 //            recPriority.text = data.dataPriority
 //            recWa.text = data.dataWa
 
-//            itemView.setOnClickListener {
-//                val intent = Intent(itemView.context, DetailProductActivity::class.java)
-//                intent.putExtra("Image", data.dataImage)
-//                intent.putExtra("Description",data.dataDes)
-//                intent.putExtra("Title", data.dataNama)
-//                intent.putExtra("Price", data.dataHarga)
-//                intent.putExtra("Wa", data.dataWa)
-//                intent.putExtra("Key", data.key)
-//                intent.putExtra("Lat", data.dataLat)
-//                intent.putExtra("Lon", data.dataLon)
-//                intent.putExtra("Uid", data.dataUid)
-//                itemView.context.startActivity(intent)
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, DetailSpiceMartActivity::class.java)
+                intent.putExtra("Image", data.dataImage)
+                intent.putExtra("Description", data.dataDes)
+                intent.putExtra("Title", data.dataNama)
+                intent.putExtra("Price", data.dataHarga)
+                intent.putExtra("Wa", data.dataWa)
+                intent.putExtra("Lat", data.dataLat)
+                intent.putExtra("Lon", data.dataLon)
+                itemView.context.startActivity(intent)
+            }
         }
 
     }

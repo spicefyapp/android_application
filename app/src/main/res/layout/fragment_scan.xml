@@ -36,6 +36,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvScanImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan Image"
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
@@ -53,16 +67,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tvAddGambar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Silahkan Masukkan Gambar Rempah \n Untuk Melakukan Prediksi"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="18dp"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/ivImagePreview"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="16dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAddGambar" />
 
 
             <androidx.appcompat.widget.AppCompatButton
