@@ -13,6 +13,8 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -45,6 +47,11 @@ interface ApiService {
 
     @GET("rempah/show")
     suspend fun getSpices(
+    ): SpiceResponse
+
+    @GET("rempah/spiceName/{name}")
+    suspend fun searchSpices(
+        @Path("name") name: String
     ): SpiceResponse
 
 

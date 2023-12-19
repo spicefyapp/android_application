@@ -34,4 +34,8 @@
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="scan_image_content">Please enter a spice image \nto make a classification</string>
+    <string name="add_gallery_image">Add Gallery Image</string>
+    <string name="add_camera_image">Add Camera Image</string>
+    <string name="submit">Submit</string>
 </resources>

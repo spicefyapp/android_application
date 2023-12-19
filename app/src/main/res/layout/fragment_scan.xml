@@ -24,18 +24,6 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="12dp"
-        android:src="@drawable/ic_back"
-        android:background="@drawable/background_oval2"
-        android:backgroundTint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tvScanImage"
         android:layout_width="match_parent"
@@ -71,9 +59,9 @@
                 android:id="@+id/tvAddGambar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Silahkan Masukkan Gambar Rempah \n Untuk Melakukan Prediksi"
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:text="@string/scan_image_content"
+                android:textColor="@color/light_grey"
+                android:textSize="20sp"
                 android:layout_marginTop="18dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +73,7 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_marginTop="16dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +89,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:letterSpacing="0"
-                android:text="Tambah Gambar Gallery"
+                android:text="@string/add_gallery_image"
                 android:textAllCaps="false"
                 android:textColor="@color/orange_700"
                 android:textSize="16sp"
@@ -119,7 +107,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:letterSpacing="0"
-                android:text="Tambah Gambar Camera"
+                android:text="@string/add_camera_image"
                 android:textAllCaps="false"
                 android:textColor="@color/orange_700"
                 android:textSize="16sp"
@@ -137,7 +125,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:letterSpacing="0"
-                android:text="Process Gambar"
+                android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"

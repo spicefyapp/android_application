@@ -19,4 +19,7 @@ class MainViewModel (
     }
 
     fun getStories() = userRepository.getSpices()
+
+    fun searchSpices(name: String) = userRepository.searchSpices(name)
+
 }

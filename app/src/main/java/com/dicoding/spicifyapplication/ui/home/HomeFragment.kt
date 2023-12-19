@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -83,6 +84,7 @@ class HomeFragment : Fragment() {
         binding.rvSpiceLib.addItemDecoration(itemDecoration)
 
         setupData()
+        setupSearchView()
     }
 
     private fun setupData() {
@@ -94,8 +96,47 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     private fun processGetAllSpices() {
         viewModel.getStories().observe(requireActivity()) { result ->
+            if (result != null) {
+                when (result) {
+                    is ResultState.Loading -> {
+                        showLoading(true)
+                    }
+                    is ResultState.Success -> {
+                        setListStory(result.data!!)
+                        showLoading(false)
+
+                    }
+                    is ResultState.Error -> {
+                        showLoading(false)
+                    }
+
+                    else -> {}
+                }
+            }
+        }
+    }
+
+    private fun setupSearchView() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { searchSpices(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrBlank()) {
+                    processGetAllSpices()
+                }
+                return true
+            }
+        })
+    }
+
+    private fun searchSpices(name: String) {
+        viewModel.searchSpices(name).observe(requireActivity()) { result ->
             if (result != null) {
                 when (result) {
                     is ResultState.Loading -> {

@@ -22,6 +22,18 @@ class SpiceRepository private constructor(
         }
     }
 
+    fun searchSpices(name: String) = liveData {
+        emit(ResultState.Loading)
+        try {
+            val responseBody = apiService.searchSpices(name)
+            emit(ResultState.Success(responseBody.rempah))
+        } catch (e: HttpException) {
+            emit(ResultState.Error( "Terjadi kesalahan"))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Terjadi kesalahan jaringan. Gagal menghubungkan server. Silahkan Coba lagi"))
+        }
+    }
+
     companion object {
         @Volatile
         private var instance: SpiceRepository? = null

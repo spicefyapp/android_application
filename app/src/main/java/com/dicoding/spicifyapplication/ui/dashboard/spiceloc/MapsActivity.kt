@@ -49,6 +49,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         databaseReference = FirebaseDatabase.getInstance().getReference("produk")
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -78,17 +80,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val bottomSheetDialog = BottomSheetDialog(this)
         val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_detailmaps, null)
 
-        val productImageView = bottomSheetView.findViewById<ImageView>(R.id.productImageView)
-        val productNameTextView = bottomSheetView.findViewById<TextView>(R.id.productNameTextView)
-        val productDescriptionTextView = bottomSheetView.findViewById<TextView>(R.id.productDescriptionTextView)
-        val productAddressTextView = bottomSheetView.findViewById<TextView>(R.id.productAddressTextView)
+        val productImageView = bottomSheetView.findViewById<ImageView>(R.id.ivProductSpice)
+        val productNameTextView = bottomSheetView.findViewById<TextView>(R.id.tvNameProduct)
+        val productAddressTextView = bottomSheetView.findViewById<TextView>(R.id.tvAddressProduct)
         val address = getAddressFromLocation(productSpiceModel.dataLat, productSpiceModel.dataLon)
-        val detailButton = bottomSheetView.findViewById<Button>(R.id.btnDetailMaps) // Tambahkan ini
+        val detailButton = bottomSheetView.findViewById<ImageView>(R.id.btnDetailProduct) // Tambahkan ini
 
 
         Glide.with(this).load(productSpiceModel.dataImage).into(productImageView)
         productNameTextView.text = productSpiceModel.dataNama
-        productDescriptionTextView.text = productSpiceModel.dataHarga
         productAddressTextView.text = address
 
         // Menambahkan onClickListener untuk tombol detail

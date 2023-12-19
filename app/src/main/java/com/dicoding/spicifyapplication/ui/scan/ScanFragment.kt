@@ -133,6 +133,7 @@ class ScanFragment : Fragment() {
                                     putExtra(DetailScanActivity.EXTRA_RESPONSE_ACCURACY, accuracy)
                                 }
                                 startActivity(intent)
+                                activity?.finish()
                             } else {
                                 showToast(getString(R.string.sorry_not_spices))
                             }
@@ -157,25 +158,12 @@ class ScanFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun showAlertDialog(title: String, message: String) {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setPositiveButton("OK") { _, _ ->
-            // Handle OK button click if needed
-        }
-        builder.create().show()
-    }
-
-
 //    override fun onDestroyView() {
 //        super.onDestroyView()
 //        _binding = null
 //    }
 
     companion object {
-        const val CAMERA_X_RESULT = 200
-        const val CROP_RESULT = 101
         const val TAG = "ScanFragment"
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }

@@ -2,6 +2,9 @@ package com.dicoding.spicifyapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -64,5 +67,20 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+    private var doubleBackToExitPressedOnce = false
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Tekan lagi untuk keluar", Toast.LENGTH_SHORT).show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            doubleBackToExitPressedOnce = false
+        }, 2000) // Waktu batas untuk menekan kembali dua kali (dalam milidetik)
     }
 }

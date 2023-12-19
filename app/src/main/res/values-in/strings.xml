@@ -35,4 +35,8 @@
     <string name="are_you_sure_you_want_to_logout">Apakah Anda yakin ingin keluar?</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
+    <string name="scan_image_content">Silahkan masukkan gambar rempah \nuntuk melakukan klasifikasi</string>
+    <string name="add_gallery_image">Tambah Gambar Galeri</string>
+    <string name="add_camera_image">Tambah Gambar Kamera</string>
+    <string name="submit">Kirim</string>
 </resources>

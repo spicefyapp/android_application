@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.spicifyapplication.data.network.response.RempahItem
@@ -15,6 +16,8 @@ import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
 
 class SpiceLibActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySpiceLibBinding
+
+
     private val viewModel by viewModels<SpiceLibViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -31,9 +34,27 @@ class SpiceLibActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         binding.btnBack.setOnClickListener { onBackPressed() }
+
+        setupSearchView()
+
         processGetAllSpice()
 
+    }
 
+    private fun setupSearchView() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { searchSpices(it) }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrBlank()) {
+                    processGetAllSpice()
+                }
+                return true
+            }
+        })
     }
 
     private fun processGetAllSpice() {
@@ -51,10 +72,29 @@ class SpiceLibActivity : AppCompatActivity() {
                     is ResultState.Error -> {
                         showLoading(false)
                         showToast("Tidak ada data")
+                    }
+                    else -> {}
+                }
+            }
+        }
+    }
 
+    private fun searchSpices(name : String) {
+        viewModel.searchSpices(name).observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is ResultState.Loading -> {
+                        showLoading(true)
 
                     }
-
+                    is ResultState.Success -> {
+                        showLoading(false)
+                        setListStory(result.data!!)
+                    }
+                    is ResultState.Error -> {
+                        showLoading(false)
+                        showToast("Tidak ada data")
+                    }
                     else -> {}
                 }
             }

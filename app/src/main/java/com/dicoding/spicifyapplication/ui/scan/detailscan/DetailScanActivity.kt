@@ -20,9 +20,7 @@ class DetailScanActivity : AppCompatActivity() {
         val responseDescription = intent.getStringExtra(EXTRA_RESPONSE_DESCRIPTION)
         val responseAccuracy = intent.getStringExtra(EXTRA_RESPONSE_ACCURACY)
 
-        // Menampilkan gambar dengan setImageURI
         binding.ivDetailImage.setImageURI(imageUri)
-
         binding.tvDetailNameContent.text = responseLabel
         binding.tvDetailScoreContent.text = responseAccuracy
         binding.tvDetailDescriptionContent.text = responseDescription
