@@ -68,19 +68,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    private var doubleBackToExitPressedOnce = false
-
-    override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed()
-            return
-        }
-
-        this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Tekan lagi untuk keluar", Toast.LENGTH_SHORT).show()
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            doubleBackToExitPressedOnce = false
-        }, 2000) // Waktu batas untuk menekan kembali dua kali (dalam milidetik)
-    }
 }

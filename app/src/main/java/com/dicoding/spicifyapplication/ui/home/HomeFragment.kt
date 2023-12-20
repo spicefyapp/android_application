@@ -2,10 +2,14 @@ package com.dicoding.spicifyapplication.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -39,13 +43,13 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var doubleBackToExitPressedOnce = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -66,7 +70,24 @@ class HomeFragment : Fragment() {
             }
         }
 
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rvSpiceLib.layoutManager = layoutManager
+        val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
+        binding.rvSpiceLib.addItemDecoration(itemDecoration)
+
+        setupListener()
+        setupData()
+        setupSearchView()
+        setupDoublePressBack()
+
+    }
+
+    private fun setupListener() {
         binding.btnImgSpiceLib.setOnClickListener {
+            startActivity(Intent(requireActivity(),SpiceLibActivity::class.java))
+        }
+
+        binding.tvViewAll.setOnClickListener {
             startActivity(Intent(requireActivity(),SpiceLibActivity::class.java))
         }
 
@@ -77,20 +98,11 @@ class HomeFragment : Fragment() {
         binding.btnImgSpiceMart.setOnClickListener {
             startActivity(Intent(requireActivity(),SpiceMartActivity::class.java))
         }
-
-        val layoutManager = LinearLayoutManager(requireContext())
-        binding.rvSpiceLib.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
-        binding.rvSpiceLib.addItemDecoration(itemDecoration)
-
-        setupData()
-        setupSearchView()
     }
 
     private fun setupData() {
         viewModel.getSession().observe(requireActivity()) { user ->
             if (user.token.isNotBlank()) {
-//                processGetAllSpices()
                 processGetAllSpices()
             }
         }
@@ -165,6 +177,25 @@ class HomeFragment : Fragment() {
         val adapter = AdapterSpices()
         adapter.submitList(listSpice)
         binding.rvSpiceLib.adapter = adapter
+    }
+
+    private fun setupDoublePressBack(){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (doubleBackToExitPressedOnce) {
+                requireActivity().finish()
+            }
+
+            doubleBackToExitPressedOnce = true
+            Toast.makeText(
+                requireContext(),
+                "Tekan sekali lagi untuk keluar",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                doubleBackToExitPressedOnce = false
+            }, 2000)
+        }
     }
 
     companion object {

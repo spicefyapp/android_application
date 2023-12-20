@@ -1,6 +1,7 @@
 package com.dicoding.spicifyapplication.ui.chatbot
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +30,15 @@ class ChatbotActivity : AppCompatActivity() {
         binding.rvChatbot.layoutManager = LinearLayoutManager(this)
         binding.rvChatbot.adapter = adapterChatBot
 
-        binding.sendBtn.setOnClickListener { view ->
+
+
+        setupListener()
+
+    }
+
+    private fun setupListener() {
+
+        binding.sendBtn.setOnClickListener {
             val userMessage = binding.edChat.text.toString().trim()
             if (userMessage.isNotEmpty()) {
                 addMessage(ChatModel(userMessage, false))
@@ -47,15 +56,17 @@ class ChatbotActivity : AppCompatActivity() {
             if (result != null) {
                 when (result) {
                     is ResultState.Loading -> {
-//                        showLoading(true)
+                        showLoading(true)
                     }
                     is ResultState.Success -> {
                         val response = result.data
                         setReviewData(ChatModel(response.chat,true))
+                        showLoading(false)
                     }
 
                     is ResultState.Error -> {
-//                        showLoading(false)
+                        showLoading(false)
+                        showToast("Terjadi kesalahan jaringan. Gagal menghubungkan server. Silahkan Coba lagi")
                     }
                 }
             }
@@ -69,6 +80,10 @@ class ChatbotActivity : AppCompatActivity() {
     private fun addMessage(chat: ChatModel) {
         adapterChatBot.submitList(chat)
         binding.rvChatbot.scrollToPosition(adapterChatBot.itemCount - 1)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showToast(message: String) {

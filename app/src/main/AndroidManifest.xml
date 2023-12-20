@@ -23,15 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpicifyApplication"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.dashboard.spicemart.DetailSpiceMartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.profile.about.AboutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.splashscreen.SplashScreenActivity"
-            android:exported="false" />
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -46,6 +38,22 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCmnD9WpsGBXTxi7NxxUY2RU-AQ4GVyjE4" />
+
+        <activity
+            android:name=".ui.dashboard.spicemart.DetailSpiceMartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.about.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.splashscreen.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".ui.dashboard.spiceloc.MapsActivity"
@@ -79,16 +87,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
