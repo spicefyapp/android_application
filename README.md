@@ -19,17 +19,17 @@ This spice detection app provides complete information about various types of sp
 - Postman for API Testing [Spicefy Cloude Service](https://github.com/spicefyapp/cloud-computing)
 
 # Screenshoot
-![splashscreen.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/splashscreen.jpg)
-![login.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/login.jpg)
-![register.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/register.jpg)
-![dashboard.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/dashboard.jpg)
-![spicelib.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/spicelib.jpg)
-![detailspicelib.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/detailspicelib.jpg)
-![scanimage.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/scanimage.jpg)
-![detailscanimage.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/detailscanimage.jpg)
-![chatbot.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/chatbot.jpg)
-![spicemart.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/spicemart.jpg)
-![detailspicemart.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/detailspicemart.jpg)
-![spiceloc.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/spiceloc.jpg)
-![profile.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/profile.jpg)
-![aboutapp.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/aboutapp.jpg)
+![splashscreen.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/splashscreen.jpg){width=50%}
+![login.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/login.jpg){width=50%}
+![register.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/register.jpg){width=50%}
+![dashboard.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/dashboard.jpg){width=50%}
+![spicelib.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/spicelib.jpg){width=50%}
+![detailspicelib.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/detailspicelib.jpg){width=50%}
+![scanimage.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/scanimage.jpg){width=50%}
+![detailscanimage.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/detailscanimage.jpg){width=50%}
+![chatbot.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/chatbot.jpg){width=50%}
+![spicemart.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/spicemart.jpg){width=50%}
+![detailspicemart.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/detailspicemart.jpg){width=50%}
+![spiceloc.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/spiceloc.jpg){width=50%}
+![profile.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/profile.jpg){width=50%}
+![aboutapp.jpg](https://github.com/spicefyapp/android_application/blob/master/Image/aboutapp.jpg){width=50%}
