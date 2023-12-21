@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.data.model.ProductSpiceModel
 import com.dicoding.spicifyapplication.databinding.ActivityAddProductBinding
 import com.dicoding.spicifyapplication.helper.getImageUri
@@ -51,15 +52,11 @@ class AddProductActivity : AppCompatActivity() {
     }
 
     private fun startCamera() {
-//        currentImageUri = getImageUri(this)
-//        launcherIntentCamera.launch(currentImageUri)
 
-        // Periksa izin kamera sebelum meluncurkan intent kamera
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             currentImageUri = getImageUri(this)
             launcherIntentCamera.launch(currentImageUri)
         } else {
-            // Jika izin belum diberikan, minta izin kepada pengguna.
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_PERMISSION)
         }
     }
@@ -77,14 +74,12 @@ class AddProductActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_CAMERA_PERMISSION -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Izin kamera diberikan, lanjutkan dengan intent kamera.
                     startCamera()
                 } else {
-                    // Izin kamera tidak diberikan, berikan informasi atau tindakan sesuai kebutuhan.
-                    Toast.makeText(this, "Izin kamera tidak diberikan.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        getString(R.string.camera_permission_not_granted), Toast.LENGTH_SHORT).show()
                 }
             }
-            // ... (Tambahkan case untuk requestCode lain jika diperlukan)
         }
     }
 
@@ -103,7 +98,6 @@ class AddProductActivity : AppCompatActivity() {
         }
     }
 
-    //Menampilkan gambar di ImageView
     private fun showImage() {
         currentImageUri?.let {
             Log.d("Image URI", "showImage: $it")
@@ -126,44 +120,42 @@ class AddProductActivity : AppCompatActivity() {
     }
 
     private fun saveProductToFirebase(location: Location) {
-        // Ambil data dari input pengguna
-        val nama = binding.edAddName.text.toString()
-        val harga = binding.edAddPrice.text.toString()
+        val name = binding.edAddName.text.toString()
+        val price = binding.edAddPrice.text.toString()
         val wa = binding.edAddWa.text.toString()
-        val deskripsi = binding.edAddDesc.text.toString()
+        val description = binding.edAddDesc.text.toString()
 
-        // Cek apakah data yang diperlukan sudah diisi
-        if (nama.isEmpty() || harga.isEmpty() || deskripsi.isEmpty() || currentImageUri == null) {
-            Toast.makeText(this, "Harap isi semua data", Toast.LENGTH_SHORT).show()
+        if (name.isEmpty() || wa.isEmpty() || price.isEmpty() || description.isEmpty() || currentImageUri == null) {
+            Toast.makeText(this, getString(R.string.please_fill_in_all_data), Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (!wa.startsWith("+62")) {
+            Toast.makeText(this,
+                getString(R.string.whatsapp_numbers_must_start_with_62), Toast.LENGTH_SHORT).show()
             return
         }
 
         showLoading(true)
 
-        // Generate nama unik untuk gambar
         val imageName = "${System.currentTimeMillis()}.jpg"
 
-        // Referensi Firebase Storage
         val storageRef = FirebaseStorage.getInstance().reference.child("images/$imageName")
 
-        // Upload gambar ke Firebase Storage
         currentImageUri?.let { uri ->
             storageRef.putFile(uri)
                 .addOnSuccessListener { taskSnapshot ->
-                    // Dapatkan URL gambar setelah berhasil diunggah
                     taskSnapshot.storage.downloadUrl.addOnSuccessListener { uri ->
-                        // Buat objek ProductSpiceModel dengan URL gambar
                         val productModel = ProductSpiceModel(
-                            dataNama = nama,
-                            dataHarga = harga,
+                            dataNama = name,
+                            dataHarga = price,
                             dataWa = wa,
-                            dataDes = deskripsi,
+                            dataDes = description,
                             dataImage = uri.toString(),
                             dataLat = location.latitude,
                             dataLon = location.longitude
                         )
 
-                        // Simpan produk ke Firebase Realtime Database
                         val database = FirebaseDatabase.getInstance().reference
                         val produkRef = database.child("produk")
 
@@ -173,7 +165,7 @@ class AddProductActivity : AppCompatActivity() {
                             produkRef.child(it).setValue(productModel)
                         }
 
-                        Toast.makeText(this, "Produk berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,getString(R.string.product_added_successfully), Toast.LENGTH_SHORT).show()
                         showLoading(false)
                         finish()
                     }
@@ -200,10 +192,9 @@ class AddProductActivity : AppCompatActivity() {
                     }
 
                 } ?: run {
-                    // Handle jika lokasi tidak tersedia
                     Toast.makeText(
                         this@AddProductActivity,
-                        "Lokasi tidak tersedia, Silahkan aktifkan GPS Anda",
+                        getString(R.string.location_not_available_please_activate_your_gps),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -238,15 +229,12 @@ class AddProductActivity : AppCompatActivity() {
         ) { permissions ->
             when {
                 permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
-                    // Precise location access granted.
                     getMyLastLocation()
                 }
                 permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
-                    // Only approximate location access granted.
                     getMyLastLocation()
                 }
                 else -> {
-                    // No location access granted.
                 }
             }
         }

@@ -18,7 +18,7 @@ class SpiceRepository private constructor(
         } catch (e: HttpException) {
             emit(ResultState.Error( "Terjadi kesalahan"))
         } catch (e: IOException) {
-            emit(ResultState.Error("Terjadi kesalahan jaringan, Coba lagi"))
+            emit(ResultState.Error("Terjadi kesalahan jaringan. Gagal menghubungkan server. Coba lagi"))
         }
     }
 
@@ -30,7 +30,7 @@ class SpiceRepository private constructor(
         } catch (e: HttpException) {
             emit(ResultState.Error( "Terjadi kesalahan"))
         } catch (e: IOException) {
-            emit(ResultState.Error("Terjadi kesalahan jaringan. Gagal menghubungkan server. Silahkan Coba lagi"))
+            emit(ResultState.Error("Terjadi kesalahan jaringan. Gagal menghubungkan server. Coba lagi"))
         }
     }
 

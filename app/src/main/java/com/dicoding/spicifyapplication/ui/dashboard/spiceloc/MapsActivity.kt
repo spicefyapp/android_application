@@ -42,7 +42,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var databaseReference: DatabaseReference
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -84,16 +83,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val productNameTextView = bottomSheetView.findViewById<TextView>(R.id.tvNameProduct)
         val productAddressTextView = bottomSheetView.findViewById<TextView>(R.id.tvAddressProduct)
         val address = getAddressFromLocation(productSpiceModel.dataLat, productSpiceModel.dataLon)
-        val detailButton = bottomSheetView.findViewById<ImageView>(R.id.btnDetailProduct) // Tambahkan ini
+        val detailButton = bottomSheetView.findViewById<ImageView>(R.id.btnDetailProduct)
 
 
         Glide.with(this).load(productSpiceModel.dataImage).into(productImageView)
         productNameTextView.text = productSpiceModel.dataNama
         productAddressTextView.text = address
 
-        // Menambahkan onClickListener untuk tombol detail
         detailButton.setOnClickListener {
-            // Handling untuk berpindah ke halaman detail product
             val intent = Intent(this, DetailSpiceMartActivity::class.java)
             intent.putExtra("Image", productSpiceModel.dataImage)
             intent.putExtra("Description", productSpiceModel.dataDes)

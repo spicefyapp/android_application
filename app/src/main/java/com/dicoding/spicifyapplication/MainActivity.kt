@@ -48,12 +48,9 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            // Cek apakah halaman saat ini adalah halaman utama
             if (destination.id == R.id.navigation_home) {
-                // Tampilkan FAB jika halaman utama
                 binding.btnFabChat.show()
             } else {
-                // Sembunyikan FAB jika bukan halaman utama
                 binding.btnFabChat.hide()
             }
         }

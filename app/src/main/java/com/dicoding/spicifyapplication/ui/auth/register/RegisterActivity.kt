@@ -23,6 +23,11 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        setupListener()
+
+    }
+
+    private fun setupListener(){
         binding.btnTvSigin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }

@@ -41,4 +41,9 @@
     <string name="submit">Kirim</string>
     <string name="already_have_an_account_please">Sudah punya akun? Silahkan </string>
     <string name="don_t_have_an_account_please">Belum punya akun? Silahkan </string>
+    <string name="location_not_available_please_activate_your_gps">Lokasi tidak tersedia, Silahkan aktifkan GPS Anda</string>
+    <string name="product_added_successfully">Produk berhasil ditambahkan</string>
+    <string name="please_fill_in_all_data">Harap isi semua data</string>
+    <string name="whatsapp_numbers_must_start_with_62">Nomor WhatsApp harus diawali dengan +62</string>
+    <string name="camera_permission_not_granted">Izin kamera tidak diberikan.</string>
 </resources>

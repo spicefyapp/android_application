@@ -16,7 +16,6 @@ class ChatbotActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatbotBinding
     private val adapterChatBot = AdapterChatbot()
 
-
     private val viewModel by viewModels<ChatBotViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -29,8 +28,6 @@ class ChatbotActivity : AppCompatActivity() {
         supportActionBar?.hide()
         binding.rvChatbot.layoutManager = LinearLayoutManager(this)
         binding.rvChatbot.adapter = adapterChatBot
-
-
 
         setupListener()
 
@@ -66,7 +63,7 @@ class ChatbotActivity : AppCompatActivity() {
 
                     is ResultState.Error -> {
                         showLoading(false)
-                        showToast("Terjadi kesalahan jaringan. Gagal menghubungkan server. Silahkan Coba lagi")
+                        showToast("Terjadi kesalahan jaringan. Gagal menghubungkan server. Coba lagi")
                     }
                 }
             }
@@ -88,8 +85,5 @@ class ChatbotActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-    companion object {
-        private const val TAG = "ChatBotActivity"
     }
 }

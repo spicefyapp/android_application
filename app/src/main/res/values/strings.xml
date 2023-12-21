@@ -40,4 +40,9 @@
     <string name="submit">Submit</string>
     <string name="already_have_an_account_please">Already have an account? Please </string>
     <string name="don_t_have_an_account_please">Don\'t have an account? Please </string>
+    <string name="location_not_available_please_activate_your_gps">Location not available, Please activate your GPS</string>
+    <string name="product_added_successfully">Product added successfully</string>
+    <string name="please_fill_in_all_data">Please fill in all data</string>
+    <string name="whatsapp_numbers_must_start_with_62">WhatsApp numbers must start with +62</string>
+    <string name="camera_permission_not_granted">Camera permission not granted.</string>
 </resources>

@@ -33,12 +33,10 @@ class DetailSpiceMartActivity : AppCompatActivity() {
                 if (addresses?.isNotEmpty() == true) {
                     val address: Address = addresses[0]
 
-                    // Dapatkan informasi yang lebih rinci seperti nama jalan, kecamatan, dan kota
                     val thoroughfare = address.thoroughfare ?: ""
                     val subLocality = address.subLocality ?: "Unknown SubLocality"
                     val locality = address.locality ?: "Unknown Locality"
 
-                    // Gabungkan informasi menjadi satu string
                     return "$thoroughfare $subLocality, $locality"
                 }
             } catch (e: IOException) {

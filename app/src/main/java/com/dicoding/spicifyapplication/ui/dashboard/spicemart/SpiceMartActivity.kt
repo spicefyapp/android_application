@@ -58,12 +58,6 @@ class SpiceMartActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
                 showLoading(false)
 
-//                // Tambahkan logika untuk menampilkan pesan "Data Kosong" jika dataList kosong
-//                if (dataList.isEmpty()) {
-//                    binding.tvEmptyData.visibility = View.VISIBLE
-//                } else {
-//                    binding.tvEmptyData.visibility = View.GONE
-//                }
             }
             override fun onCancelled(error: DatabaseError) {
                 showLoading(false)

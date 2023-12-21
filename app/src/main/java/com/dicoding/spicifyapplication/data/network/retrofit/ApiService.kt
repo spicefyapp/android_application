@@ -54,6 +54,4 @@ interface ApiService {
         @Path("name") name: String
     ): SpiceResponse
 
-
-
 }

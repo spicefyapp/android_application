@@ -26,6 +26,12 @@ class LoginActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        setupListener()
+
+
+    }
+
+    private fun setupListener(){
         binding.btnTvSignUp.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }

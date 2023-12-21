@@ -32,17 +32,16 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -74,7 +73,6 @@ class ProfileFragment : Fragment() {
                 }
             }
 
-            // Menampilkan AlertDialog
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }

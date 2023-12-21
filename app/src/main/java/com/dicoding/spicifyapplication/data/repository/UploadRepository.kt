@@ -29,7 +29,7 @@ class UploadRepository private constructor(
         } catch (e: HttpException) {
             emit(ResultState.Error( "Terjadi kesalahan"))
         } catch (e: IOException) {
-            emit(ResultState.Error("Terjadi kesalahan jaringan. Gagal menghubungkan server. Silahkan Coba lagi"))
+            emit(ResultState.Error("Terjadi kesalahan jaringan. Gagal menghubungkan server. Coba lagi"))
         }
     }
 
@@ -40,9 +40,9 @@ class UploadRepository private constructor(
             val successResponse = apiService.chatWithTheBit(chat)
             emit(ResultState.Success(ChatModel(successResponse.spiceBotReply,true)))
         } catch (e: HttpException) {
-            emit(ResultState.Error( "Terjadi kesalahan"))
+            emit(ResultState.Error("Terjadi kesalahan"))
         } catch (e: IOException) {
-            emit(ResultState.Error("Terjadi kesalahan jaringan. Gagal menghubungkan server. Silahkan Coba lagi"))
+            emit(ResultState.Error("A network error occurred. Failed to connect server. Try again"))
         }
     }
 

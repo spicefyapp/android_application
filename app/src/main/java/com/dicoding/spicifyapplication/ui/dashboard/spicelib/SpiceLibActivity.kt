@@ -17,7 +17,6 @@ import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
 class SpiceLibActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySpiceLibBinding
 
-
     private val viewModel by viewModels<SpiceLibViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -38,7 +37,6 @@ class SpiceLibActivity : AppCompatActivity() {
         setupSearchView()
 
         processGetAllSpice()
-
     }
 
     private fun setupSearchView() {
