@@ -1,8 +1,10 @@
 package com.dicoding.spicifyapplication.ui.scan.detailscan
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.spicifyapplication.MainActivity
 import com.dicoding.spicifyapplication.databinding.ActivityDetailScanBinding
 
 class DetailScanActivity : AppCompatActivity() {
@@ -25,6 +27,12 @@ class DetailScanActivity : AppCompatActivity() {
         binding.tvDetailScoreContent.text = responseAccuracy
         binding.tvDetailDescriptionContent.text = responseDescription
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     companion object {

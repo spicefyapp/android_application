@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         binding.btnTvSigin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))

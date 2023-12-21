@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">SpicifyApplication</string>
+    <string name="app_name" translatable="false">Spicefy</string>
     <string name="title_home">Home</string>
     <string name="title_scan">Scan</string>
     <string name="title_profile">Profile</string>
@@ -38,4 +38,6 @@
     <string name="add_gallery_image">Add Gallery Image</string>
     <string name="add_camera_image">Add Camera Image</string>
     <string name="submit">Submit</string>
+    <string name="already_have_an_account_please">Already have an account? Please </string>
+    <string name="don_t_have_an_account_please">Don\'t have an account? Please </string>
 </resources>

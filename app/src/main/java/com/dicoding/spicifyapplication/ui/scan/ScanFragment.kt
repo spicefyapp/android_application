@@ -133,7 +133,7 @@ class ScanFragment : Fragment() {
                                     putExtra(DetailScanActivity.EXTRA_RESPONSE_ACCURACY, accuracy)
                                 }
                                 startActivity(intent)
-                                activity?.finish()
+//                                activity?.finish()
                             } else {
                                 showToast(getString(R.string.sorry_not_spices))
                             }
@@ -158,10 +158,10 @@ class ScanFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     companion object {
         const val TAG = "ScanFragment"
