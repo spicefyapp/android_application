@@ -12,6 +12,7 @@ import com.dicoding.spicifyapplication.ui.auth.login.LoginViewModel
 import com.dicoding.spicifyapplication.ui.auth.register.RegisterViewModel
 import com.dicoding.spicifyapplication.ui.chatbot.ChatBotViewModel
 import com.dicoding.spicifyapplication.ui.dashboard.spicelib.SpiceLibViewModel
+import com.dicoding.spicifyapplication.ui.dashboard.spicemart.SpiceMartViewModel
 import com.dicoding.spicifyapplication.ui.scan.ScanViewModel
 
 class ViewModelFactory (private val repository: UploadRepository, private val userRepository: UserRepository,private val spiceRepository: SpiceRepository) :
@@ -36,6 +37,9 @@ class ViewModelFactory (private val repository: UploadRepository, private val us
             }
             modelClass.isAssignableFrom(SpiceLibViewModel::class.java) -> {
                 SpiceLibViewModel(spiceRepository) as T
+            }
+            modelClass.isAssignableFrom(SpiceMartViewModel::class.java) -> {
+                SpiceMartViewModel(spiceRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

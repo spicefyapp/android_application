@@ -2,10 +2,12 @@ package com.dicoding.spicifyapplication.data.network.retrofit
 
 import com.dicoding.spicifyapplication.data.network.response.ChatResponse
 import com.dicoding.spicifyapplication.data.network.response.LoginResponse
+import com.dicoding.spicifyapplication.data.network.response.ProductResponse
 import com.dicoding.spicifyapplication.data.network.response.RegisterResponse
 import com.dicoding.spicifyapplication.data.network.response.SpiceResponse
 import com.dicoding.spicifyapplication.data.network.response.UploadResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -53,5 +55,27 @@ interface ApiService {
     suspend fun searchSpices(
         @Path("name") name: String
     ): SpiceResponse
+
+    @GET("market/show")
+    suspend fun getProductSpice(
+    ): ProductResponse
+
+    @Multipart
+    @POST("market/add")
+    suspend fun uploadProductSpice(
+        @Part image: MultipartBody.Part,
+        @Part("name") name: RequestBody?,
+        @Part("price") price: RequestBody?,
+        @Part("noWA") noWA: RequestBody?,
+        @Part("description") description: RequestBody?,
+        @Part("lat") lat: RequestBody?,
+        @Part("lan") lan: RequestBody?
+
+    ): ProductResponse
+
+    @GET("market/show")
+    suspend fun getSpiceWithLocation(
+        @Query("location") location : Int = 1,
+    ): ProductResponse
 
 }

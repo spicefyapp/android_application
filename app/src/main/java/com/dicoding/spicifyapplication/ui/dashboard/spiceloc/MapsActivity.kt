@@ -11,13 +11,18 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.data.model.ProductSpiceModel
+import com.dicoding.spicifyapplication.data.network.response.SpiceItem
 import com.dicoding.spicifyapplication.databinding.ActivityMapsBinding
+import com.dicoding.spicifyapplication.helper.ResultState
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 import com.dicoding.spicifyapplication.ui.dashboard.spicemart.DetailSpiceMartActivity
+import com.dicoding.spicifyapplication.ui.dashboard.spicemart.SpiceMartViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -39,6 +44,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+
+    private val viewModel by viewModels<SpiceMartViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
     private lateinit var databaseReference: DatabaseReference
 
@@ -70,37 +79,72 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        fetchDataAndAddMarkers()
+        proccessGetStoriesWithLocation()
         getMyLocation()
 
     }
 
-    private fun showBottomSheet(productSpiceModel: ProductSpiceModel) {
+    private fun proccessGetStoriesWithLocation() {
+        viewModel.getStoriesWithLocation().observe(this){ result ->
+            if (result != null){
+                when (result) {
+                    is ResultState.Loading -> {}
+                    is ResultState.Success -> {
+                        result.data?.forEach { data ->
+                            val latLng = LatLng(data?.lat!!, data?.lan!!)
+                            val marker = mMap.addMarker(MarkerOptions().position(latLng).title(data.name))
+                            marker?.tag = data
+                            boundsBuilder.include(latLng)
+                        }
+                        mMap.setOnMarkerClickListener { marker ->
+                            val productSpiceModel: SpiceItem? = marker.tag as? SpiceItem
+                            productSpiceModel?.let { showBottomSheet(it) }
+                            true
+                        }
+                        val bounds: LatLngBounds = boundsBuilder.build()
+                        mMap.animateCamera(
+                            CameraUpdateFactory.newLatLngBounds(
+                                bounds,
+                                resources.displayMetrics.widthPixels,
+                                resources.displayMetrics.heightPixels,
+                                300
+                            )
+                        )
+                    }
+                    is ResultState.Error -> {}
+                }
+            }
+
+        }
+
+    }
+
+    private fun showBottomSheet(productSpiceModel: SpiceItem) {
         val bottomSheetDialog = BottomSheetDialog(this)
         val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_detailmaps, null)
 
         val productImageView = bottomSheetView.findViewById<ImageView>(R.id.ivProductSpice)
         val productNameTextView = bottomSheetView.findViewById<TextView>(R.id.tvNameProduct)
         val productAddressTextView = bottomSheetView.findViewById<TextView>(R.id.tvAddressProduct)
-        val address = getAddressFromLocation(productSpiceModel.dataLat, productSpiceModel.dataLon)
+        val address = getAddressFromLocation(productSpiceModel.lat, productSpiceModel.lan)
         val detailButton = bottomSheetView.findViewById<ImageView>(R.id.btnDetailProduct)
 
 
-        Glide.with(this).load(productSpiceModel.dataImage).into(productImageView)
-        productNameTextView.text = productSpiceModel.dataNama
+        Glide.with(this).load(productSpiceModel.image).into(productImageView)
+        productNameTextView.text = productSpiceModel.name
         productAddressTextView.text = address
 
         detailButton.setOnClickListener {
             val intent = Intent(this, DetailSpiceMartActivity::class.java)
-            intent.putExtra("Image", productSpiceModel.dataImage)
-            intent.putExtra("Description", productSpiceModel.dataDes)
-            intent.putExtra("Title", productSpiceModel.dataNama)
-            intent.putExtra("Price", productSpiceModel.dataHarga)
-            intent.putExtra("Wa", productSpiceModel.dataWa)
-            intent.putExtra("Lat", productSpiceModel.dataLat)
-            intent.putExtra("Lon", productSpiceModel.dataLon)
+            intent.putExtra("Image", productSpiceModel.image)
+            intent.putExtra("Description", productSpiceModel.description)
+            intent.putExtra("Title", productSpiceModel.name)
+            intent.putExtra("Price", productSpiceModel.price)
+            intent.putExtra("Wa", productSpiceModel.noWA)
+            intent.putExtra("Lat", productSpiceModel.lat)
+            intent.putExtra("Lon", productSpiceModel.lan)
             startActivity(intent)
-            bottomSheetDialog.dismiss() // Menutup bottom sheet setelah berpindah halaman
+            bottomSheetDialog.dismiss()
         }
 
         bottomSheetDialog.setContentView(bottomSheetView)
@@ -162,42 +206,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         } catch (exception: Resources.NotFoundException) {
             Log.e(TAG, "Can't find style. Error: ", exception)
         }
-    }
-
-    private fun fetchDataAndAddMarkers() {
-        databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (dataSnapshot in snapshot.children) {
-                    val spiceProduk = dataSnapshot.getValue(ProductSpiceModel::class.java)
-                    spiceProduk?.let {
-                        val latLng = LatLng(it.dataLat ?: 0.0, it.dataLon ?: 0.0)
-                        val marker = mMap.addMarker(MarkerOptions().position(latLng).title(it.dataNama))
-                        marker?.tag = it
-                        boundsBuilder.include(latLng)
-                    }
-                }
-                mMap.setOnMarkerClickListener { marker ->
-                    val productSpiceModel: ProductSpiceModel? = marker.tag as? ProductSpiceModel
-
-                    productSpiceModel?.let { showBottomSheet(it) }
-
-                    true
-                }
-
-                val bounds: LatLngBounds = boundsBuilder.build()
-                mMap.animateCamera(
-                    CameraUpdateFactory.newLatLngBounds(
-                        bounds,
-                        resources.displayMetrics.widthPixels,
-                        resources.displayMetrics.heightPixels,
-                        300)
-                )
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle error jika diperlukan
-            }
-        })
     }
     private val boundsBuilder = LatLngBounds.Builder()
 

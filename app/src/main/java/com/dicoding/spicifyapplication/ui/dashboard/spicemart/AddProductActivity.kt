@@ -4,12 +4,15 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -17,7 +20,11 @@ import androidx.core.content.ContextCompat
 import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.data.model.ProductSpiceModel
 import com.dicoding.spicifyapplication.databinding.ActivityAddProductBinding
+import com.dicoding.spicifyapplication.helper.ResultState
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 import com.dicoding.spicifyapplication.helper.getImageUri
+import com.dicoding.spicifyapplication.helper.reduceFileImage
+import com.dicoding.spicifyapplication.helper.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.database.FirebaseDatabase
@@ -27,9 +34,14 @@ class AddProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddProductBinding
     private var currentImageUri: Uri? = null
 
+    private val viewModel by viewModels<SpiceMartViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddProductBinding.inflate(layoutInflater)
@@ -178,6 +190,7 @@ class AddProductActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun getMyLastLocation() {
         if(checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
             checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -186,7 +199,7 @@ class AddProductActivity : AppCompatActivity() {
                 location?.let {
                     if (location != null){
                         if (binding.switchLoc.isChecked){
-                            saveProductToFirebase(it)
+                            uploadImageWithLocation(location.latitude.toString(),location.longitude.toString())
                         }else{
                         }
                     }
@@ -223,6 +236,7 @@ class AddProductActivity : AppCompatActivity() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
@@ -238,6 +252,47 @@ class AddProductActivity : AppCompatActivity() {
                 }
             }
         }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun uploadImageWithLocation(lat: String, lon:String) {
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, this).reduceFileImage()
+            Log.d("Image File", "showImage: ${imageFile.path}")
+
+            val name = binding.edAddName.text.toString()
+            val price = binding.edAddPrice.text.toString()
+            val wa = binding.edAddWa.text.toString()
+            val description = binding.edAddDesc.text.toString()
+
+            showLoading(true)
+
+            viewModel.uploadProductSpice(name, price, wa, description, imageFile, lat, lon)
+                .observe(this) { result ->
+                    if (result != null) {
+                        when (result) {
+                            is ResultState.Loading -> {
+                                showLoading(true)
+                            }
+
+                            is ResultState.Success -> {
+                                showLoading(false)
+                                showToast("Upload Product Berhasil")
+                                finish()
+                            }
+
+                            is ResultState.Error -> {
+                                showLoading(false)
+                                showToast("Gagal Upload Product")
+                            }
+                        }
+                    }
+                } ?: showToast(getString(R.string.empty_image_warning))
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
