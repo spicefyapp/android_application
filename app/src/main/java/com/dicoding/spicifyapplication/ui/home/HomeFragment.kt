@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,23 +12,17 @@ import androidx.activity.addCallback
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.spicifyapplication.MainViewModel
 import com.dicoding.spicifyapplication.data.network.response.RempahItem
-import com.dicoding.spicifyapplication.data.network.response.SpiceResponse
-import com.dicoding.spicifyapplication.data.network.retrofit.ApiConfig
 import com.dicoding.spicifyapplication.databinding.FragmentHomeBinding
 import com.dicoding.spicifyapplication.helper.ResultState
 import com.dicoding.spicifyapplication.ui.adapter.AdapterSpices
 import com.dicoding.spicifyapplication.ui.dashboard.spicelib.SpiceLibActivity
 import com.dicoding.spicifyapplication.ui.dashboard.spiceloc.MapsActivity
 import com.dicoding.spicifyapplication.ui.dashboard.spicemart.SpiceMartActivity
-import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 
 class HomeFragment : Fragment() {
 

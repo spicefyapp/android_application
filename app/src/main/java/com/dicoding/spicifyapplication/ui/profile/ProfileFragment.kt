@@ -9,12 +9,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.dicoding.spicifyapplication.MainViewModel
 import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.databinding.FragmentProfileBinding
 import com.dicoding.spicifyapplication.ui.profile.about.AboutActivity
-import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 
 class ProfileFragment : Fragment() {
 
@@ -52,6 +51,13 @@ class ProfileFragment : Fragment() {
                 binding.tvEmailProfile.text = email
             }
         }
+
+        setupListener()
+
+    }
+
+    private fun setupListener() {
+
         binding.btnCvAbout.setOnClickListener {
             startActivity(Intent(requireContext(),AboutActivity::class.java))
         }
@@ -76,6 +82,7 @@ class ProfileFragment : Fragment() {
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }
+
     }
 
 }

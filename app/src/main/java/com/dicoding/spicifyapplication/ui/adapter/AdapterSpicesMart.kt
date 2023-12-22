@@ -31,12 +31,10 @@ class AdapterSpicesMart (private var dataProduct: List<ProductSpiceModel>) : Rec
                     if (addresses?.isNotEmpty() == true) {
                         val address: Address = addresses[0]
 
-                        // Dapatkan informasi yang lebih rinci seperti nama jalan, kecamatan, dan kota
                         val thoroughfare = address.thoroughfare ?: ""
                         val subLocality = address.subLocality ?: ""
                         val locality = address.locality ?: ""
 
-                        // Gabungkan informasi menjadi satu string
                         return "$thoroughfare $subLocality, $locality"
                     }
                 } catch (e: IOException) {
@@ -53,9 +51,7 @@ class AdapterSpicesMart (private var dataProduct: List<ProductSpiceModel>) : Rec
             tvName.text = data.dataNama
             tvPrice.text = data.dataHarga
             tvLoc.text = alamatJalan
-//            recDesc.text = data.dataDesc
-//            recPriority.text = data.dataPriority
-//            recWa.text = data.dataWa
+
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailSpiceMartActivity::class.java)

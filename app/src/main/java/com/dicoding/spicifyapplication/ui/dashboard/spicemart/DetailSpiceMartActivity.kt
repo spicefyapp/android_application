@@ -74,6 +74,9 @@ class DetailSpiceMartActivity : AppCompatActivity() {
                 intent.setData(Uri.parse(url))
                 startActivity(intent)
             }
+
+            binding.btnBack.setOnClickListener { onBackPressed() }
+
         }
     }
 }

@@ -2,9 +2,6 @@ package com.dicoding.spicifyapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -14,7 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.dicoding.spicifyapplication.databinding.ActivityMainBinding
 import com.dicoding.spicifyapplication.ui.auth.login.LoginActivity
 import com.dicoding.spicifyapplication.ui.chatbot.ChatbotActivity
-import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

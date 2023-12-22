@@ -4,6 +4,7 @@ import androidx.lifecycle.liveData
 import com.dicoding.spicifyapplication.data.model.ChatModel
 import com.dicoding.spicifyapplication.data.network.retrofit.ApiService
 import com.dicoding.spicifyapplication.helper.ResultState
+import kotlinx.coroutines.Dispatchers
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody

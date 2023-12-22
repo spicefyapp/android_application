@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvScanImage"
+        android:id="@+id/tvDetailSpicemart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Detail Product"

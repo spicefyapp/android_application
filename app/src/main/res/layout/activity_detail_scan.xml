@@ -1,190 +1,187 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.scan.detailscan.DetailScanActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/bg_gradient"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <ImageView
-            android:id="@+id/overlayImage"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/bg_gradient"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/overlayImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_topbar" />
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvScanImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detail Spice Scan"
+            android:layout_marginTop="24dp"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg_topbar" />
+            android:layout_marginTop="70dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvImage"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"> <!-- Menambahkan radius 16dp -->
+
+                    <ImageView
+                        android:id="@+id/iv_detail_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        tools:src="@tools:sample/avatars" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tv_detail_name_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="32dp"
+                    android:textAlignment="center"
+                    android:text="@string/detail_name_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvImage"
+                    app:lineHeight="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_detail_name_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:textAlignment="center"
+                    android:text="@string/detail_name_content"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_name_title"
+                    app:lineHeight="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_detail_score_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="32dp"
+                    android:text="@string/detail_accuracy_title"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_name_content"
+                    app:lineHeight="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_detail_score_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:textAlignment="center"
+                    android:text="@string/detail_accuracy_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/orange_700"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_score_title"
+                    app:lineHeight="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_detail_description_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="32dp"
+                    android:text="@string/detail_description_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_score_content"
+                    app:lineHeight="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_detail_description_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:text="@string/detail_description_content"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_description_title"
+                    app:lineHeight="24sp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-    </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="12dp"
-        android:src="@drawable/ic_back"
-        android:background="@drawable/background_oval2"
-        android:backgroundTint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvScanImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detail Spice Scan"
-        android:layout_marginTop="24dp"
-        android:textStyle="bold"
-        android:textSize="24dp"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/cardView2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="70dp"
-        android:orientation="vertical"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvImage"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="18dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"> <!-- Menambahkan radius 16dp -->
-
-                <ImageView
-                    android:id="@+id/iv_detail_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    tools:src="@tools:sample/avatars" />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/tv_detail_name_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:textAlignment="center"
-                android:text="@string/detail_name_title"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvImage"
-                app:lineHeight="24sp" />
-
-            <TextView
-                android:id="@+id/tv_detail_name_content"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="32dp"
-                android:textAlignment="center"
-                android:text="@string/detail_name_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_name_title"
-                app:lineHeight="24sp" />
-
-            <TextView
-                android:id="@+id/tv_detail_score_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
-                android:text="@string/detail_accuracy_title"
-                android:textAlignment="center"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_name_content"
-                app:lineHeight="24sp" />
-
-            <TextView
-                android:id="@+id/tv_detail_score_content"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="32dp"
-                android:textAlignment="center"
-                android:text="@string/detail_accuracy_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/orange_700"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_score_title"
-                app:lineHeight="24sp" />
-
-            <TextView
-                android:id="@+id/tv_detail_description_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="32dp"
-                android:text="@string/detail_description_title"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_score_content"
-                app:lineHeight="24sp" />
-
-            <TextView
-                android:id="@+id/tv_detail_description_content"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="32dp"
-                android:text="@string/detail_description_content"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_description_title"
-                app:lineHeight="24sp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

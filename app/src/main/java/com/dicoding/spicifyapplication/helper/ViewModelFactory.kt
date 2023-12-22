@@ -1,4 +1,4 @@
-package com.dicoding.spicifyapplication.ui.scan
+package com.dicoding.spicifyapplication.helper
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -12,6 +12,7 @@ import com.dicoding.spicifyapplication.ui.auth.login.LoginViewModel
 import com.dicoding.spicifyapplication.ui.auth.register.RegisterViewModel
 import com.dicoding.spicifyapplication.ui.chatbot.ChatBotViewModel
 import com.dicoding.spicifyapplication.ui.dashboard.spicelib.SpiceLibViewModel
+import com.dicoding.spicifyapplication.ui.scan.ScanViewModel
 
 class ViewModelFactory (private val repository: UploadRepository, private val userRepository: UserRepository,private val spiceRepository: SpiceRepository) :
     ViewModelProvider.Factory {

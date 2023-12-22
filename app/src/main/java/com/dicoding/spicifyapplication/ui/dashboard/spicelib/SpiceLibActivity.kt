@@ -12,7 +12,7 @@ import com.dicoding.spicifyapplication.data.network.response.RempahItem
 import com.dicoding.spicifyapplication.databinding.ActivitySpiceLibBinding
 import com.dicoding.spicifyapplication.helper.ResultState
 import com.dicoding.spicifyapplication.ui.adapter.AdapterSpices
-import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 
 class SpiceLibActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySpiceLibBinding

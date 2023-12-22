@@ -10,7 +10,7 @@ import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.databinding.ActivityRegisterBinding
 import com.dicoding.spicifyapplication.helper.ResultState
 import com.dicoding.spicifyapplication.ui.auth.login.LoginActivity
-import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding

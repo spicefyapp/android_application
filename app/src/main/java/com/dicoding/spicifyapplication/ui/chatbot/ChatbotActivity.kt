@@ -10,7 +10,7 @@ import com.dicoding.spicifyapplication.data.model.ChatModel
 import com.dicoding.spicifyapplication.databinding.ActivityChatbotBinding
 import com.dicoding.spicifyapplication.helper.ResultState
 import com.dicoding.spicifyapplication.ui.adapter.AdapterChatbot
-import com.dicoding.spicifyapplication.ui.scan.ViewModelFactory
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 
 class ChatbotActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatbotBinding

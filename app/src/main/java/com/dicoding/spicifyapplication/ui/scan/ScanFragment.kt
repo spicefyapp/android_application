@@ -14,13 +14,13 @@ import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dicoding.spicifyapplication.R
 import com.dicoding.spicifyapplication.databinding.FragmentScanBinding
 import com.dicoding.spicifyapplication.helper.ResultState
+import com.dicoding.spicifyapplication.helper.ViewModelFactory
 import com.dicoding.spicifyapplication.helper.getImageUri
 import com.dicoding.spicifyapplication.helper.reduceFileImage
 import com.dicoding.spicifyapplication.helper.uriToFile

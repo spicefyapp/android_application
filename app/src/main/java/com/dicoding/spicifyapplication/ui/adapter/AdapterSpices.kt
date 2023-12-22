@@ -16,7 +16,6 @@ class AdapterSpices : ListAdapter<RempahItem, AdapterSpices.ViewHolder>(DIFF_CAL
     class ViewHolder (binding: ItemSpicelibRowBinding) : RecyclerView.ViewHolder(binding.root) {
         val imageStory = binding.ivSpice
         val tvNameStory = binding.tvNameSpice
-//        val tvDescStory = binding.tvItemDescription
 
         fun bind(spice: RempahItem) {
             itemView.setOnClickListener {
@@ -27,8 +26,6 @@ class AdapterSpices : ListAdapter<RempahItem, AdapterSpices.ViewHolder>(DIFF_CAL
         }
 
     }
-
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
